@@ -1,0 +1,23 @@
+.post{
+    flex-direction: column;
+    background-color: #EDF2F4;
+    padding: 2em;
+    border-radius: 10px;
+    display: flex;
+    margin: 20px 0;
+    min-width: 50%;
+    box-shadow: 0 0 10px #b2a2a2;
+}
+
+.post__header{
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.post__header>h3{
+    float: left;
+}
+
+.post__header>button{
+    float: right;
+}

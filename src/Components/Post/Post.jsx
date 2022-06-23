@@ -1,22 +1,23 @@
 import React from 'react';
+import cl from './Post.module.css'
 
 const Post = ({author, content, creationDate}) => {
     return (
-        <div className="post">
-            <div className={"post__header"}>
+        <div className={cl.post}>
+            <div className={cl.post__header}>
                 <img
                 />
                 <h3> {author} </h3>
                 <button>...</button>
             </div>
-            <div className="post__content">
+            <div className={cl.post__content}>
                 <p>
                     <hr/>
                     {content}
                     <hr/>
                 </p>
             </div>
-            <div className="post__info">
+            <div className={cl.post__info}>
                 <h4> {creationDate} </h4>
             </div>
         </div>
