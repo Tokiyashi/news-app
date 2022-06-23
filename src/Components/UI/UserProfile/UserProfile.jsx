@@ -17,6 +17,7 @@ const UserProfile = () => {
                  width="200px"
                  alt="avatar"
                  src={test}
+                 draggable="false"
             />
         </div>
     );

@@ -7,12 +7,12 @@ import UserProfile from "./Components/UI/UserProfile/UserProfile";
 
 function App() {
     const [posts, setPost] = useState([
-        {name: "Мазила", content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ'},
-        {name: "Вася2", content: 'Контент2'},
+        {name: "Мазила", header:'Прикол', content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ'},
+        {name: "Вася", header:'какой-то заголовок', content: 'Воняет жопа'},
     ]);
 
     const postList = posts.map((item, index) =>
-    <Post key={index} author={item.name} content={item.content} > </Post>
+    <Post key={index} header={item.header} author={item.name} content={item.content} > </Post>
     );
 
   return (
