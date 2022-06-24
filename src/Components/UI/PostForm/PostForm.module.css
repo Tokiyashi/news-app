@@ -1,0 +1,21 @@
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+textarea{
+    resize:vertical;
+    width: 100%;
+    max-height: 600px;
+    text-align: left;
+}
+
+button{
+    border-radius: 20px;
+    border: none;
+    background-color: #EF233C;
+    padding: 10px;
+    color: white;
+}
