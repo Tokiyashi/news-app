@@ -1,0 +1,32 @@
+.userProfile__info__username{
+    text-shadow: rgba(0, 0, 0, 0.32) 1px 2px ;
+}
+
+.userProfile__avatar{
+    border-radius: 50%;
+}
+
+.userProfile{
+    display: flex;
+    padding: 20px;
+    min-width: 55%;
+    background-color: #EDF2F4;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    justify-content: center;
+}
+.userProfile__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.userProfile__info>button{
+    border: none;
+    border-radius: 10px;
+    padding: 1em;
+    color: #EDF2F4;
+    background-color: #EF233C;
+    min-width: 20%;
+}

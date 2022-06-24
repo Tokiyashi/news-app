@@ -1,0 +1,41 @@
+
+header{
+    background-color: #EF233C;
+    min-width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: #EDF2F4;
+    align-items: center;
+}
+.navbar__name{
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar__signup{
+    border: 2px solid #EDF2F4;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #4f2121;
+    background-color: #ffffff;
+    color: #5d4747;
+}
+.navbar__signup:hover{
+    color: #ffffff;
+    background-color: #EF233C;
+    transform: scale(1.1);
+    transition: all 0.15s;
+}
+.navbar__search{
+    width: 30%;
+}
+
+input{
+    text-align: left;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    width: 100%;
+}

@@ -8,37 +8,18 @@
   text-align: center;
 }
 
-header{
-  background-color: #ffffff;
-  min-width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
 
 main{
   display: flex;
   align-items: center;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgb(145, 155, 204), rgb(79, 68, 131));
+  background-image: linear-gradient(to bottom, #d9d9d9, #d9d9d9);
   flex-direction: column;
 }
 
-.post{
-  flex-direction: column;
-  background-color: white;
-  padding: 2em;
-  border-radius: 10px;
-  display: flex;
-  margin: 20px 0;
-  min-width: 50%;
+
+button:hover{
+  filter: brightness(0.8);
+  transition: all 0.2s;
 }
 
-.post__header{
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-}
-.post__header>h3{
-
-}
