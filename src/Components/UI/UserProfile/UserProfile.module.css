@@ -1,0 +1,90 @@
+.userProfile__info__username{
+    text-shadow: rgba(0, 0, 0, 0.32) 1px 2px ;
+}
+
+.userProfile__avatar{
+    width: 200px;
+    border-radius: 50%;
+
+}
+.wrapper{
+    display: flex;
+}
+
+.leftBlock__button{
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.leftBlock{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #EDF2F4;
+    margin-right: 15px;
+    padding: 15px 5px;
+}
+
+.mainBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfile{
+    width: 100%;
+    display: flex;
+    padding: 20px;
+    background-color: #EDF2F4;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    justify-content: center;
+}
+.userProfile__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.userProfile__info>button{
+    border: none;
+    border-radius: 10px;
+    padding: 1em;
+    color: #EDF2F4;
+    background-color: #EF233C;
+    min-width: 20%;
+}
+
+.followInfo{
+
+    margin-top: 20px;
+    display: flex;
+    padding: 20px;
+    background-color: #EDF2F4;
+    border-radius: 10px;
+    justify-content: center;
+    gap: 10px
+}
+
+
+.redBox{
+    min-width: 30%;
+    border: 4px solid #EF233C;
+    padding: 1em;
+    border-radius: 20px;
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .userProfile{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .followInfo{
+        flex-direction: column;
+    }
+}

@@ -1,23 +1,17 @@
 import './index.css';
-import {useState} from "react";
-import Post from "./Components/Post/Post";
-import Header from "./Components/UI/Header";
+import Header from "./Components/UI/Header/Header";
+import UserProfile from "./Components/UI/UserProfile/UserProfile";
+import PostList from "./Components/PostList/PostList";
 
 function App() {
-    const [posts, setPost] = useState([
-        {name: "Вася1", content: 'Контент1'},
-        {name: "Вася2", content: 'Контент2'},
-    ]);
-
-    const postList = posts.map((item) =>
-    <Post author={item.name} content={item.content} > </Post>
-    );
-
   return (
-      <main>
-          <Header/>
-          {postList}
-      </main>
+    <>
+        <Header/>
+        <main>
+            <UserProfile/>
+            <PostList/>
+        </main>
+    </>
   );
 }
 
