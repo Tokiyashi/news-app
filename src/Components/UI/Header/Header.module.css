@@ -1,7 +1,7 @@
 
 header{
     background-color: #EF233C;
-    min-width: 100vw;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -38,4 +38,14 @@ input{
     border-radius: 10px;
     outline: none;
     width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .navbar__search{
+        width: 50%;
+    }
+    header{
+        gap: 20px;
+        flex-direction: column;
+    }
 }

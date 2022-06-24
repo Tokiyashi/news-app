@@ -4,8 +4,9 @@
     padding: 2em;
     border-radius: 10px;
     display: flex;
-    margin: 20px 0;
-    min-width: 50%;
+    margin-top: 20px;
+    width: 70%;
+    max-width: 1000px;
     box-shadow: 0 0 10px #af9999;
 }
 .post__info{
@@ -14,9 +15,6 @@
 .post__info__buttons{
     float: right;
 }
-.likeBtn{
-}
-
 .post__header{
     justify-content: space-between;
     flex-direction: row;

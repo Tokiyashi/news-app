@@ -8,13 +8,19 @@
   text-align: center;
 }
 
+html{
+  overflow-x: hidden;
+}
+
 
 main{
   display: flex;
   align-items: center;
   min-height: 100vh;
+  min-width: 100vw;
   background-image: linear-gradient(to bottom, #d9d9d9, #d9d9d9);
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 
