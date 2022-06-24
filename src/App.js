@@ -5,7 +5,7 @@ import Header from "./Components/UI/Header";
 
 function App() {
     const [posts, setPost] = useState([
-        {name: "Вася", content: 'Контент'},
+        {name: "Вася1", content: 'Контент1'},
         {name: "Вася2", content: 'Контент2'},
     ]);
 
