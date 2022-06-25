@@ -18,9 +18,7 @@ const Post = ({author, content, header, creationDate}) => {
             </div>
             <div className={cl.post__content}>
                 <p>
-                    <hr/>
-                    {header}
-                    <hr/>
+                    {header} <br/>
                     {content}
                 </p>
             </div>

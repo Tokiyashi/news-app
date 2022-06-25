@@ -1,5 +1,5 @@
 
-header{
+header {
     background-color: #EF233C;
     width: 100vw;
     display: flex;
@@ -8,12 +8,13 @@ header{
     color: #EDF2F4;
     align-items: center;
 }
-.navbar__name{
+
+.navbar__name {
     justify-content: center;
     align-items: center;
 }
 
-.navbar__signup{
+.navbar__signup {
     border: 2px solid #EDF2F4;
     padding: 1em;
     border-radius: 10px;
@@ -21,17 +22,19 @@ header{
     background-color: #ffffff;
     color: #5d4747;
 }
-.navbar__signup:hover{
+
+.navbar__signup:hover {
     color: #ffffff;
     background-color: #EF233C;
     transform: scale(1.1);
     transition: all 0.15s;
 }
-.navbar__search{
+
+.navbar__search {
     width: 30%;
 }
 
-input{
+input {
     text-align: left;
     padding: 5px;
     border: none;
@@ -41,10 +44,11 @@ input{
 }
 
 @media screen and (max-width: 700px) {
-    .navbar__search{
+    .navbar__search {
         width: 50%;
     }
-    header{
+
+    header {
         gap: 20px;
         flex-direction: column;
     }

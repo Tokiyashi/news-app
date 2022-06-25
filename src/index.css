@@ -29,3 +29,20 @@ button:hover{
   transition: all 0.2s;
 }
 
+.filters{
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+.filters>input{
+  background-color: #EDF2F4;
+  padding: 10px;
+}
+
+.profilePage{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 65%;
+}

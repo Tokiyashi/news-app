@@ -16,15 +16,17 @@ const Header = () => {
                     src={logo}
                     width="40px"
                 />
-               <h2> #ТАЩИ </h2>
+                <h2> #ТАЩИ </h2>
             </div>
 
             <div className={cl.navbar__search}>
                 <input
-                placeholder="Поиск..."
+                    placeholder="Поиск..."
                 />
             </div>
-            <div className={cl.navbar__signup} onClick={()=> {setLoginModalActive(true)}}>
+            <div className={cl.navbar__signup} onClick={() => {
+                setLoginModalActive(true)
+            }}>
                 Login
             </div>
             <Modal active={loginModalActive} setActive={setLoginModalActive}>
