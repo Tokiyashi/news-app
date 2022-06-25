@@ -1,8 +1,7 @@
 const Router = require('express')
 const router = new Router()
+const postController = require('../controllers/postController')
 
-router.post('/')
-router.get('/')
-router.get('/:id')
+router.get('/', postController.blabla)
 
 module.exports = router
