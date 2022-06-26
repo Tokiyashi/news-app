@@ -4,10 +4,10 @@ import cl from './NavigationMenu.module.css'
 const NavigationMenu = () => {
     return (
         <div className={cl.leftBlock}>
-            <button > Me</button>
-            <button > News</button>
-            <button > Followers</button>
-            <button > Liked</button>
+            <button > Я</button>
+            <button > Новости</button>
+            <button > Подписчики</button>
+            <button > Оценено</button>
         </div>
     );
 };

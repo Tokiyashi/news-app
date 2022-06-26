@@ -28,7 +28,7 @@ const UserProfile = () => {
                         </div>
                         <button onClick={() => {
                             setCreatePostModal(true)
-                        }}> What's New today?
+                        }}> Что у вас сегодня нового?
                         </button>
                     </div>
                     <img className={cl.userProfile__avatar}
@@ -43,13 +43,13 @@ const UserProfile = () => {
                 </div>
                 <div className={cl.followInfo}>
                     <div className={[cl.followInfo__follows, cl.redBox].join(' ')}>
-                        <h3>Follows: {follows} </h3>
+                        <h3>Подписки: {follows} </h3>
                     </div>
                     <div className={[cl.followInfo__followers, cl.redBox].join(' ')}>
-                        <h3>Followers: 13</h3>
+                        <h3>Подписчики: 13</h3>
                     </div>
                     <div className={[cl.followInfo__likes, cl.redBox].join(' ')}>
-                        <h3> Likes: 342 </h3>
+                        <h3> Лайки: 342 </h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 .leftBlock>button{
     border-radius: 10px;
     margin-top: 5px;
+    text-align: left;
 }
 
 .leftBlock{

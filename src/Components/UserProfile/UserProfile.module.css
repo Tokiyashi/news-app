@@ -73,4 +73,8 @@
     .followInfo{
         flex-direction: column;
     }
+   .wrapper{
+       flex-direction: column ;
+       justify-content: center;
+   }
 }
