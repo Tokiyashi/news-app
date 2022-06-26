@@ -48,18 +48,44 @@ class SubscriptionsController{
     }
 
     async unsubscribe(req, res) {
-        var {name, surname} = req.params
-        res.json("123")
+        const {login, followLogin} = req.body
+        const loginId = await db.query('SELECT id FROM "user" where login = $1', [login])
+        const followLoginId = await db.query('SELECT id FROM "user" where login = $1', [followLogin])
+        if (loginId.rowCount == 0 || followLoginId.rowCount == 0) {
+            res.json({code: 2, text: 'Пользователь не найден'})
+        } else {
+            const isThereSubscription = await db.query('SELECT id FROM "subscriptions" where user_id = $1 AND following_id = $2', [loginId.rows[0]['id'], followLoginId.rows[0]['id']])
+            if (isThereSubscription.rowCount == 0) {
+                res.json({code: 1, text: 'Подписка не оформлена'})
+            } else {
+                await db.query('DELETE FROM "subscriptions" where id = $1', [isThereSubscription.rows[0]['id']])
+                res.json({code: 0, text: 'Подписка удалена'})
+            }
+        }
     }
 
     async getFollowers(req, res) {
-        var {name, surname} = req.params
-        res.json("123")
+        const login = req.params.login
+        const isThereUser = await db.query('select id from "user" where login = $1', [login])
+        if (isThereUser.rowCount == 1) {
+            const followers = await db.query('select following_id as id from "subscriptions" where user_id = $1', [isThereUser.rows[0]['id']])
+            if (followers.rowCount == 1) {
+                res.json({code: 0, text: 'У пользователя есть подписки'})
+            } else {
+                res.json({code: 1, text: 'У пользователя нет подписок'})
+            }
+            res.json(followers.rows)
+        } else {
+            res.json({code: 2, text: 'Пользователь не найден'})
+        }
+
+
+        //res.json(isThereUser)
     }
 
     async getFollowings(req, res) {
-        var {name, surname} = req.params
-        res.json("123")
+        const {login} = req.params
+        const loginId = await db.query('SELECT id FROM "user" where login = $1', [login])
     }
 
     async test(req, res) {
