@@ -10,7 +10,7 @@ class UserController {
         // загрузка файла в папку static
         const file = req.files.avatar
         const avatarName = Uuid.v4() + ".jpg"
-        const path = "/Users/vlad/Documents/GitHub/news-app/server/static/" + avatarName
+        const path = __dirname.slice(0, -10) + "static/" + avatarName
         file.mv(path)
         // валидация остальных данных
         const {email, login, password, surname, name, age} = req.body
@@ -35,19 +35,55 @@ class UserController {
     }
 
     async checkUser(req, res) {
-        const {emailOrLogin, password} = req.body
-        const isThereUser = await db.query('SELECT login, password FROM "user" where email = $1 OR login = $1', [emailOrLogin])
+        const {id, password} = req.body
+        const isThereUser = await db.query('SELECT id, login, password FROM "user" where email = $1 OR login = $1', [emailOrLogin])
         if (isThereUser.rowCount == 0) {
             res.json({code: 1, text: 'Пользователь не найден'})
         } else {
             if (isThereUser.rows[0]['password'] == password) {
-               res.json({code: 0, text: 'Авторизация выполнена'})
+               res.json({code: 0, text: 'Авторизация выполнена', data:  {id: isThereUser.rows[0]['id'], login: isThereUser.rows[0]['login']}})
             } else {
                res.json({code: 2, text: 'Неверный пароль'})
             }
         }
     }
 
+    async getUserById(req, res) {
+        const id = req.params.id
+        const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where id = $1', [id])
+        if (user.rowCount == 0) {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        } else {
+            res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
+        }
+    }
+
+    async getUserByLogin(req, res) {
+        const login = req.params.login
+        const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where login = $1', [login])
+        if (user.rowCount == 0) {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        } else {
+            res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
+        }
+    }
+
+    async getUserByName(req, res) {
+        var {name, surname} = req.params
+        name = name+'%'
+        surname = surname+'%'
+        const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where name like $1 and surname like $2', [name, surname])
+        if (user.rowCount == 0) {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        } else {
+            res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
+        }
+    }
+
+
+    async test(req, res) {
+        res.json(__dirname.slice(0, -10) + 'static/')
+    }
 
 }
 
