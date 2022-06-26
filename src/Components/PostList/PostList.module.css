@@ -1,0 +1,18 @@
+.postList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.notFound{
+    background-color: #EDF2F4;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    text-shadow: 2px 2px 2px #b6b6b6;
+}
+

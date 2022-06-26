@@ -1,41 +1,46 @@
-.post{
+.post {
     flex-direction: column;
     background-color: #EDF2F4;
     padding: 2em;
     border-radius: 10px;
     display: flex;
     margin-top: 20px;
-    width: 70%;
-    max-width: 700px;
+    width: 100%;
+
 }
-.post__info{
+
+.post__info {
     width: 100%;
 }
-.post__info__buttons{
+
+.post__info__buttons {
     float: right;
 }
-.post__header{
+
+.post__header {
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
     display: flex;
     align-items: center;
 }
-.post__header>h3, .post__header>img {
+
+.post__header > h3, .post__header > img {
     float: left;
 }
 
-.post__header__user{
+.post__header__user {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px
 }
 
-.post__header__user>img{
+.post__header__user > img {
     border-radius: 50%;
 }
-.post__header>button{
+
+.post__header > button {
     border: none;
     background-color: #EF233C;
     color: #d9d9d9;
@@ -43,10 +48,10 @@
     border-radius: 20px;
 }
 
-.post__header>button{
+.post__header > button {
     float: right;
 }
 
-.post__info__buttons{
+.post__info__buttons {
 
 }
