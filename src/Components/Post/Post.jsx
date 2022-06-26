@@ -17,6 +17,7 @@ const Post = ({author, content, header, creationDate}) => {
                     <h3> {author} </h3>
                 </div>
                 <img
+                    alt="options"
                     src={info}
                     width="40px"
                 />
@@ -33,6 +34,7 @@ const Post = ({author, content, header, creationDate}) => {
                 <div className={cl.post__info__buttons}>
 
                     <img
+                        alt="comment"
                         src={comment}
                         width="40px"
                     />
