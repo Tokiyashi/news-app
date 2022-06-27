@@ -5,42 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d3566c8-7584-4588-abc6-df8d54a3d58e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Post/Post.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/Post.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/Post.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/comment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/heart (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/heart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/like-svgrepo-com.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/option.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/speech-bubble.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/Post/test avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/PostFilter.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/PostList/PostList.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/PostList/PostList.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Header/Header.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Header/Header.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Header/social-media.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Modal/Modal.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Modal/Modal.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/NavigationMenu/NavigationMenu.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/NavigationMenu/NavigationMenu.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/PostForm/PostForm.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/PostForm/PostForm.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Select/Select.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/Select/Select.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UI/SignForm/SignForm.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UserProfile/UserProfile.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/UserProfile/UserProfile.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/Components/pages/ProfilePage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/img/test avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +50,7 @@
       <workItem from="1656260641097" duration="47000" />
       <workItem from="1656260691026" duration="1108000" />
       <workItem from="1656261839388" duration="1918000" />
-      <workItem from="1656314561635" duration="828000" />
+      <workItem from="1656314561635" duration="1763000" />
     </task>
     <servers />
   </component>
