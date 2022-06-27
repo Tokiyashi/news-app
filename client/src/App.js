@@ -5,18 +5,19 @@ import PostList from "./Components/PostList/PostList";
 import React, {useState} from "react";
 import Post from "./Components/Post/Post";
 import Select from "./Components/UI/Select/Select";
-import ProfilePage from "./Components/pages/ProfilePage";
+import ProfilePage from "./pages/ProfilePage";
 import NavigationMenu from "./Components/UI/NavigationMenu/NavigationMenu";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import AppRouter from "./Components/AppRouter";
+import LikedPosts from "./pages/LikedPosts";
 
 function App() {
 
     return (
-    <>
-        <Header/>
-        <main>
-            <ProfilePage/>
-        </main>
-    </>
+
+    <BrowserRouter>
+        <AppRouter/>
+    </BrowserRouter>
   );
 }
 
