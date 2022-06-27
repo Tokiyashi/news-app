@@ -68,41 +68,35 @@ class SubscriptionsController{
         const login = req.params.login
         const isThereUser = await db.query('select id from "user" where login = $1', [login])
         if (isThereUser.rowCount == 1) {
-            const followers = await db.query('select following_id as id from "subscriptions" where user_id = $1', [isThereUser.rows[0]['id']])
-            if (followers.rowCount == 1) {
-                res.json({code: 0, text: 'У пользователя есть подписки'})
+            const followers = await db.query('select user_id as id from "subscriptions" where following_id = $1', [isThereUser.rows[0]['id']])
+            if (followers.rowCount == 0) {
+                res.json({code: 1, text: 'На пользователя никто не подписан'})
             } else {
-                res.json({code: 1, text: 'У пользователя нет подписок'})
+                res.json({code: 0, text: 'На пользователя кто-то подписан', data: followers.rows})
             }
-            res.json(followers.rows)
         } else {
             res.json({code: 2, text: 'Пользователь не найден'})
         }
-
-
-        //res.json(isThereUser)
     }
 
     async getFollowings(req, res) {
-        const {login} = req.params
-        const loginId = await db.query('SELECT id FROM "user" where login = $1', [login])
+        const login = req.params.login
+        const isThereUser = await db.query('select id from "user" where login = $1', [login])
+        if (isThereUser.rowCount == 1) {
+            const followings = await db.query('select following_id as id from "subscriptions" where user_id = $1', [isThereUser.rows[0]['id']])
+            if (followings.rowCount == 0) {
+                res.json({code: 1, text: 'У пользователя нет подписок'})
+            } else {
+                res.json({code: 0, text: 'У пользователя есть подписки', data: followings.rows})
+            }
+        } else {
+            res.json({code: 2, text: 'Пользователь не найден'})
+        }
     }
 
     async test(req, res) {
         res.json("123")
     }
-
-    // async getUserByName(req, res) {
-    //     var {name, surname} = req.params
-    //     name = name+'%'
-    //     surname = surname+'%'
-    //     const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where name like $1 and surname like $2', [name, surname])
-    //     if (user.rowCount == 0) {
-    //         res.json({code: 1, text: 'Пользователь не найден'})
-    //     } else {
-    //         res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
-    //     }
-    // }
 }
 
 module.exports = new SubscriptionsController()
