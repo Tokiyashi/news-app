@@ -4,7 +4,7 @@ const userRouter = require('./routes/userRoutes')
 const subscriptionsRouter = require('./routes/subscriptionsRoutes')
 const postRouter = require('./routes/postRoutes')
 
-const PORT = 8080
+const PORT = 3000
 
 const app = express()
 
