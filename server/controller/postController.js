@@ -20,6 +20,17 @@ class PostController{
         }
     }
 
+    async deletePost(req, res) {
+        const id = req.body.id
+        const isTherePost = await db.query('select user_id from "post" where id = $1', [id])
+        if (isTherePost.rowCount == 1) {
+
+        } else {
+
+        }
+        
+    }
+
     async test(req, res) {
         res.json("123")
     }

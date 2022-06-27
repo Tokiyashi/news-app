@@ -3,6 +3,7 @@ const router = new Router()
 const postController = require('../controller/postController')
 
 router.post('/post/create', postController.createPost)
+router.delete('/post/delete', postController.createPost)
 // router.get('/subscriptions/check/:login/:followLogin', subscriptionsController.checkSubscription)
 // router.post('/subscriptions/subscribe', subscriptionsController.subscribe)
 // router.delete('/subscriptions/unsubscribe', subscriptionsController.unsubscribe)
