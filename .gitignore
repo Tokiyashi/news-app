@@ -6,7 +6,7 @@
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-
+.idea/
 **/.idea/workspace.xml
 
 /.idea
@@ -38,3 +38,5 @@ yarn-error.log*
 .idea/workspace.xml
 .idea/workspace.xml
 
+.idea/workspace.xml
+package-lock.json
