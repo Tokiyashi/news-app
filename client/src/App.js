@@ -10,10 +10,6 @@ import NavigationMenu from "./Components/UI/NavigationMenu/NavigationMenu";
 
 function App() {
 
-
-
-
-
     return (
     <>
         <Header/>
