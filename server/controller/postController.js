@@ -16,7 +16,7 @@ class PostController{
             await db.query('insert into "post" values ($1, $2, current_date, $3) ', [id, userId, text])
             res.json({code: 0, text: 'Пост опубликован'})
         } else {
-            res.json({code: 2, text: 'Пользователь не найден'})
+            res.json({code: 1, text: 'Пользователь не найден'})
         }
     }
 
@@ -27,7 +27,7 @@ class PostController{
             // добавить удаление коментов и лайков
 
             await db.query('delete from "post" where id = $1', [id])
-
+            // обновление id
             const postCount = await db.query('SELECT count(id) FROM "post"')
             const postIdArr = await db.query('SELECT id FROM "post" ORDER BY id')
             for (var i = 0; i < postCount.rows[0]['count']; i++) {
@@ -84,10 +84,23 @@ class PostController{
         }
     }
 
-
-
-    async getPostByUserId(req, res) {
-
+    async getPostsFromSubscriptions(req, res) {
+        const login = req.params.login
+        const isThereUser = await db.query('select id from "user" where login = $1', [login])
+        if (isThereUser.rowCount == 1) {
+            const followings = await db.query('select following_id as id from "subscriptions" where user_id = $1', [isThereUser.rows[0]['id']])
+            if (followings.rowCount == 0) {
+                res.json({code: 1, text: 'У пользователя нет подписок'})
+            } else {
+                for (var i = 0; i < followings.rowCount; i++) {
+                    const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" where user_id = $1', [followings.rows[i]['id']])
+                    followings.rows[i]['posts'] = posts.rows
+                }
+                res.json({code: 0, text: 'У пользователя есть подписки', data: followings.rows})
+            }
+        } else {
+            res.json({code: 2, text: 'Пользователь не найден'})
+        }
     }
 
     async test(req, res) {
