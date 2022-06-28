@@ -1,9 +1,10 @@
 import React, {useMemo} from 'react';
-import UserProfile from "../UserProfile/UserProfile";
-import Select from "../UI/Select/Select";
-import PostList from "../PostList/PostList";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import Select from "../Components/UI/Select/Select";
+import PostList from "../Components/PostList/PostList";
 import {useState} from "react";
-import PostFilter from "../PostFilter";
+import PostFilter from "../Components/PostFilter";
+import Header from "../Components/UI/Header/Header";
 
 const ProfilePage = () => {
 
@@ -26,11 +27,14 @@ const ProfilePage = () => {
     }, [filter.query, sortedPosts])
 
     return (
-        <div className="profilePage">
-            <UserProfile/>
-            <PostFilter filter={filter} setFilter={setFilter} />
-            <PostList posts={sortedAndSearchedPosts}/>
-        </div>
+        <main>
+            <Header/>
+            <div className="profilePage">
+                <UserProfile/>
+                <PostFilter filter={filter} setFilter={setFilter} />
+                <PostList posts={sortedAndSearchedPosts}/>
+            </div>
+        </main>
     );
 };
 
