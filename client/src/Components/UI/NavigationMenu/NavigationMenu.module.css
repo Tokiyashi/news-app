@@ -1,8 +1,16 @@
-.leftBlock>button{
+.link{
     border-radius: 10px;
     margin-top: 5px;
     text-align: left;
+    background-color: #EF233C;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
 }
+.link:visited{
+    text-decoration: none;
+}
+
 
 .leftBlock{
     border-bottom-left-radius: 10px;
