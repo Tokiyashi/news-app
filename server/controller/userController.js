@@ -8,10 +8,10 @@ class UserController {
             text: 'Успех'
         }
         // загрузка файла в папку static
-        const file = req.files.avatar
-        const avatarName = Uuid.v4() + ".jpg"
-        const path = __dirname.slice(0, -10) + "static/" + avatarName
-        file.mv(path)
+        // const file = req.files.avatar
+        // const avatarName = Uuid.v4() + ".jpg"
+        // const path = __dirname.slice(0, -10) + "static/" + avatarName
+        // file.mv(path)
         // валидация остальных данных
         const {email, login, password, surname, name, age} = req.body
         const isThereUser = await db.query('SELECT count(*) FROM "user" where email = $1 OR login = $2', [email, login])
@@ -29,7 +29,7 @@ class UserController {
                 id = 0
             }
             await db.query('INSERT INTO "user" values ($1, $2, $3, $4, $5, $6, $7, $8, $9, current_date)',
-               [id, email, login, password, surname, name, age, avatarName, 'Мой статус'])
+               [id, email, login, password, surname, name, age, 'defaultAvatar.jpeg', 'Мой статус'])
         }
         res.json(err)
     }
