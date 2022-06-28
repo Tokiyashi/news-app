@@ -41,12 +41,12 @@ class LikeController{
                     id = 0
                 }
                 await db.query('delete from "like" where id = $1', [isThereLike.rows[0]['id']])
-                // обновление id
-                const likeCount = await db.query('SELECT count(id) FROM "like"')
-                const likeIdArr = await db.query('SELECT id FROM "like" ORDER BY id')
-                for (var i = 0; i < likeCount.rows[0]['count']; i++) {
-                    await db.query('UPDATE "like" SET id = $1 WHERE id = $2', [i, likeIdArr.rows[i]['id']])
-                }
+                // // обновление id
+                // const likeCount = await db.query('SELECT count(id) FROM "like"')
+                // const likeIdArr = await db.query('SELECT id FROM "like" ORDER BY id')
+                // for (var i = 0; i < likeCount.rows[0]['count']; i++) {
+                //     await db.query('UPDATE "like" SET id = $1 WHERE id = $2', [i, likeIdArr.rows[i]['id']])
+                // }
                 res.json({code: 0, text: 'Лайк удалён'})
             } else {
                 res.json({code: 2, text: 'Лайк не стоит'})

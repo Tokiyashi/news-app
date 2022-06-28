@@ -27,12 +27,12 @@ class PostController{
             // добавить удаление коментов и лайков
 
             await db.query('delete from "post" where id = $1', [id])
-            // обновление id
-            const postCount = await db.query('SELECT count(id) FROM "post"')
-            const postIdArr = await db.query('SELECT id FROM "post" ORDER BY id')
-            for (var i = 0; i < postCount.rows[0]['count']; i++) {
-                await db.query('UPDATE "post" SET id = $1 WHERE id = $2', [i, postIdArr.rows[i]['id']])
-            }
+            // // обновление id
+            // const postCount = await db.query('SELECT count(id) FROM "post"')
+            // const postIdArr = await db.query('SELECT id FROM "post" ORDER BY id')
+            // for (var i = 0; i < postCount.rows[0]['count']; i++) {
+            //     await db.query('UPDATE "post" SET id = $1 WHERE id = $2', [i, postIdArr.rows[i]['id']])
+            // }
             res.json({code: 0, text: 'Пост удалён'})
         } else {
             res.json({code: 1, text: 'Пост с таким id не найден'})
