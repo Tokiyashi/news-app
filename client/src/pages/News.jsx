@@ -19,7 +19,7 @@ const News = () => {
         <main>
             <Header/>
             <div style={{display: "flex", minWidth: "70%"}}>
-                <div style={{width: '20%'}}>
+                <div style={{width: '24%'}}>
                     <NavigationMenu />
                 </div>
                 <div style={{width: '80%'}} >

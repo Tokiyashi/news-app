@@ -1,17 +1,19 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
 const SignForm = () => {
     return (
         <div>
-            <h2> Login </h2>
+            <h2> Вход </h2>
             <input
-                placeholder="Login..."
+                placeholder="Логин..."
             />
             <input
-                placeholder="Password..."
+                placeholder="Пароль..."
             />
-            <p> Don't have an account? <b> Sign in here </b> </p>
+            <button> Готово! </button>
+            <p> Ещё нет аккаунта? <Link to="/registration"> Зарегистрироваться </Link> </p>
         </div>
     );
 };
