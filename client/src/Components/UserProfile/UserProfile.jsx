@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import test from "../../img/test avatar.jpg";
 import cl from './UserProfile.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import SignForm from "../UI/SignForm/SignForm";
-import PostForm from "../UI/PostForm/PostForm";
+import SignForm from "../SignForm/SignForm";
+import PostForm from "../PostForm/PostForm";
 import Modal from "../UI/Modal/Modal";
-import NavigationMenu from "../UI/NavigationMenu/NavigationMenu";
+import NavigationMenu from "../NavigationMenu/NavigationMenu";
 
 const UserProfile = () => {
 
