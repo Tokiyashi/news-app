@@ -80,6 +80,44 @@ class UserController {
         }
     }
 
+    async changeAvatar(req, res) {
+        // загрузка файла в папку static
+        const file = req.files.avatar
+        const avatarName = Uuid.v4() + ".jpg"
+        const path = __dirname.slice(0, -10) + "static/" + avatarName
+        file.mv(path)
+        // валидация остальных данных
+        const userId = req.body.userId
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set avatar = $1 where id = $2', [avatarName, userId])
+            res.json({code: 0, text: 'Аватарка изменена'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
+
+    async changeLogin(req, res) {
+        const {userId, login} = req.body
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set login = $1 where id = $2', [login, userId])
+            res.json({code: 0, text: 'Логин изменён'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
+
+    async changeQuote(req, res) {
+        const {userId, quote} = req.body
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set quote = $1 where id = $2', [quote, userId])
+            res.json({code: 0, text: 'Статус изменён'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
 
     async test(req, res) {
         res.json(__dirname.slice(0, -10) + 'static/')
