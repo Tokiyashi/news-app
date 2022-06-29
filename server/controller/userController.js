@@ -58,28 +58,67 @@ class UserController {
         }
     }
 
-    async getUserByLogin(req, res) {
-        const login = req.params.login
-        const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where login = $1', [login])
-        if (user.rowCount == 0) {
+    async getUsersByLogin(req, res) {
+        var {login} = req.params
+        login = login+'%'
+        const users = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where login like $1', [login])
+        if (users.rowCount == 0) {
             res.json({code: 1, text: 'Пользователь не найден'})
         } else {
-            res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
+            res.json({code: 0, text: 'Пользователь найден', data: users.rows})
         }
     }
 
-    async getUserByName(req, res) {
+    async getUsersByName(req, res) {
         var {name, surname} = req.params
         name = name+'%'
         surname = surname+'%'
-        const user = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where name like $1 and surname like $2', [name, surname])
-        if (user.rowCount == 0) {
+        const users = await db.query('SELECT id, email, login, surname, name, age, avatar, quote, registrationdate FROM "user" where name like $1 and surname like $2', [name, surname])
+        if (users.rowCount == 0) {
             res.json({code: 1, text: 'Пользователь не найден'})
         } else {
-            res.json({code: 0, text: 'Пользователь найден', data: user.rows[0]})
+            res.json({code: 0, text: 'Пользователь найден', data: users.rows})
         }
     }
 
+    async changeAvatar(req, res) {
+        // загрузка файла в папку static
+        const file = req.files.avatar
+        const avatarName = Uuid.v4() + ".jpg"
+        const path = __dirname.slice(0, -10) + "static/" + avatarName
+        file.mv(path)
+        // валидация остальных данных
+        const userId = req.body.userId
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set avatar = $1 where id = $2', [avatarName, userId])
+            res.json({code: 0, text: 'Аватарка изменена'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
+
+    async changeLogin(req, res) {
+        const {userId, login} = req.body
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set login = $1 where id = $2', [login, userId])
+            res.json({code: 0, text: 'Логин изменён'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
+
+    async changeQuote(req, res) {
+        const {userId, quote} = req.body
+        const isThereUser = await db.query('select login from "user" where id = $1', [userId])
+        if (isThereUser.rowCount == 1) {
+            await db.query('update "user" set quote = $1 where id = $2', [quote, userId])
+            res.json({code: 0, text: 'Статус изменён'})
+        } else {
+            res.json({code: 1, text: 'Пользователь не найден'})
+        }
+    }
 
     async test(req, res) {
         res.json(__dirname.slice(0, -10) + 'static/')
