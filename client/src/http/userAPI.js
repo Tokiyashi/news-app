@@ -24,9 +24,10 @@ export const fetchUsers = async (query) => {
     return data
 }
 export const fetchUser = async (id) => {
-    const data = await $host.get('api/users/id/'+id);
+    const data = await $host.get('api/user/id/'+id);
     console.log(data);
     return data
+
 }
 
 

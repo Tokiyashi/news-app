@@ -6,10 +6,23 @@ import {useState} from "react";
 import PostFilter from "../Components/PostFilter";
 import Header from "../Components/Header/Header";
 import {useParams} from "react-router-dom";
+import {fetchUser} from "../http/userAPI";
+import {useEffect} from "react";
 
 const ProfilePage = () => {
 
-    let userId = useParams()
+    const userId = useParams()
+
+    const [user, setUser] = useState({});
+
+    const fetchCurrentUser = async (x) => {
+        const result = await fetchUser(x);
+        setUser(result.data.data);
+    }
+
+    useEffect( ()=>{
+        fetchCurrentUser(userId.id);
+    }, [])
 
     const [posts, setPosts] = useState([
     ]);
@@ -30,11 +43,14 @@ const ProfilePage = () => {
     return (
         <main>
             <Header/>
+            { user ?
             <div className="profilePage">
-                <UserProfile id={userId} />
+                <UserProfile user={user} />
                 <PostFilter filter={filter} setFilter={setFilter} />
                 <PostList posts={sortedAndSearchedPosts}/>
             </div>
+                : <div> Пользователь не найден... </div>
+            }
         </main>
     );
 };
