@@ -17,10 +17,21 @@ const RegistrationForm = () => {
         age: '',
     })
 
+    const [serverMessage, setServerMessage] = useState('');
+
         const signIn = async (userInput) => {
             console.log(userInput);
             const response = await registration(userInput.email, userInput.login, userInput.password, userInput.surname, userInput.name, userInput.age)
             console.log(response);
+            setUserInput({
+                email: '',
+                login: '',
+                password: '',
+                name: '',
+                surname: '',
+                age: '',
+            });
+            setServerMessage(response.data.text);
         }
 
 
@@ -62,6 +73,10 @@ const RegistrationForm = () => {
                 onChange={e => setUserInput({...userInput, age: e.target.value})}
                 placeholder="Возраст..."
             />
+            {
+                serverMessage !== '' &&
+                <h4> {serverMessage} </h4>
+            }
             <button onClick={(e)=> {
                 signIn(userInput);
                 e.preventDefault()

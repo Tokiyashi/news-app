@@ -5,12 +5,13 @@ import PostList from "../Components/PostList/PostList";
 import {useState} from "react";
 import PostFilter from "../Components/PostFilter";
 import Header from "../Components/Header/Header";
+import {useParams} from "react-router-dom";
 
 const ProfilePage = () => {
 
+    let userId = useParams()
+
     const [posts, setPosts] = useState([
-        {name: "Мазила", header: 'Прикол', content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ!'},
-        {name: "Вася", header: 'какой-то заголовок', content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ!'},
     ]);
 
     const [filter, setFilter] = useState({sort: '', query: ''})
@@ -30,7 +31,7 @@ const ProfilePage = () => {
         <main>
             <Header/>
             <div className="profilePage">
-                <UserProfile/>
+                <UserProfile id={userId} />
                 <PostFilter filter={filter} setFilter={setFilter} />
                 <PostList posts={sortedAndSearchedPosts}/>
             </div>

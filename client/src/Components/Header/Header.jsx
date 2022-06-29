@@ -24,7 +24,6 @@ const Header = () => {
 
             <div className={cl.navbar__search}>
                 <AccountsSearch/>
-
             </div>
             <div className={cl.navbar__signup} onClick={() => {
                 setLoginModalActive(true)
