@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import test from "../../img/test avatar.jpg";
 import cl from './UserProfile.module.css'
 import {useDispatch, useSelector} from "react-redux";
@@ -6,10 +6,21 @@ import SignForm from "../SignForm/SignForm";
 import PostForm from "../PostForm/PostForm";
 import Modal from "../UI/Modal/Modal";
 import NavigationMenu from "../NavigationMenu/NavigationMenu";
+import {fetchUser} from "../../http/userAPI";
 
-const UserProfile = () => {
+const UserProfile = ({id}) => {
 
     const [createPostModal, setCreatePostModal] = useState(false);
+
+    const [user, setUser] = useState({});
+
+    useEffect( ()=>{
+        const fetch = async () => {
+            const result = await fetchUser(id)
+            console.log(result)
+        }
+        fetch();
+    }, [])
 
     const dispatch = useDispatch()
     const follows = useSelector(state => state.follows)
