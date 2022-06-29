@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import cl from './Header.module.css'
 import logo from './social-media.png'
-import Modal from "../Modal/Modal";
+import Modal from "../UI/Modal/Modal";
 import SignForm from "../SignForm/SignForm";
+import {fetchUsers} from "../../http/userAPI";
+import AccountsSearch from "../AccountsSearch/AccountsSearch";
 
 const Header = () => {
     const [loginModalActive, setLoginModalActive] = useState(false);
+
 
 
     return (
@@ -20,9 +23,8 @@ const Header = () => {
             </div>
 
             <div className={cl.navbar__search}>
-                <input
-                    placeholder="Поиск..."
-                />
+                <AccountsSearch/>
+
             </div>
             <div className={cl.navbar__signup} onClick={() => {
                 setLoginModalActive(true)

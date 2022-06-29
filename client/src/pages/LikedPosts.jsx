@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "../Components/UI/Header/Header";
-import NavigationMenu from "../Components/UI/NavigationMenu/NavigationMenu";
+import Header from "../Components/Header/Header";
+import NavigationMenu from "../Components/NavigationMenu/NavigationMenu";
 import PostList from "../Components/PostList/PostList";
 
 const LikedPosts = () => {

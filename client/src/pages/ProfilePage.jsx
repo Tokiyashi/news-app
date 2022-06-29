@@ -4,7 +4,7 @@ import Select from "../Components/UI/Select/Select";
 import PostList from "../Components/PostList/PostList";
 import {useState} from "react";
 import PostFilter from "../Components/PostFilter";
-import Header from "../Components/UI/Header/Header";
+import Header from "../Components/Header/Header";
 
 const ProfilePage = () => {
 

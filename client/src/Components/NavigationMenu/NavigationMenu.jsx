@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './NavigationMenu.module.css'
 import {Link} from "react-router-dom";
-import {LIKED_ROUTE, NEWS_ROUTE, USER_ROUTE} from "../../../utils/consts";
+import {LIKED_ROUTE, NEWS_ROUTE, USER_ROUTE} from "../../utils/consts";
 
 const NavigationMenu = () => {
     return (
