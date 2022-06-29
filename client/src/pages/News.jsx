@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import PostList from "../Components/PostList/PostList";
 import {useDispatch, useSelector} from "react-redux";
-import Header from "../Components/UI/Header/Header";
+import Header from "../Components/Header/Header";
 import PostFilter from "../Components/PostFilter";
-import NavigationMenu from "../Components/UI/NavigationMenu/NavigationMenu";
+import NavigationMenu from "../Components/NavigationMenu/NavigationMenu";
 
 const News = () => {
     const dispatch = useDispatch;
@@ -18,8 +18,8 @@ const News = () => {
     return (
         <main>
             <Header/>
-            <div style={{display: "flex", minWidth: "70%"}}>
-                <div style={{width: '24%'}}>
+            <div style={{display: "flex", minWidth: "65%"}}>
+                <div style={{}}>
                     <NavigationMenu />
                 </div>
                 <div style={{width: '80%'}} >

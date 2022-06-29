@@ -1,21 +1,26 @@
 import React, {useState} from 'react';
 import './RegistrationForm.module.css'
 import {registration} from "../../http/userAPI";
+import {useDispatch, useSelector} from "react-redux";
 
 const RegistrationForm = () => {
 
-        const [userInput, setUserInput] = useState({
-            email: '',
-            login: '',
-            password: '',
-            name: '',
-            surname: '',
-            age: '',
-        })
+    const dispatch = useDispatch();
+    const login = useSelector(state => state.user.login)
+
+    const [userInput, setUserInput] = useState({
+        email: '',
+        login: '',
+        password: '',
+        name: '',
+        surname: '',
+        age: '',
+    })
 
         const signIn = async (userInput) => {
-                const response = await registration(userInput)
-                console.log(response);
+            console.log(userInput);
+            const response = await registration(userInput.email, userInput.login, userInput.password, userInput.surname, userInput.name, userInput.age)
+            console.log(response);
         }
 
 
