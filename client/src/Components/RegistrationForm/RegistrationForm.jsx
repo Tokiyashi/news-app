@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './RegistrationForm.module.css'
+import cl from './RegistrationForm.module.css'
 import {registration} from "../../http/userAPI";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -36,7 +36,7 @@ const RegistrationForm = () => {
 
 
         return (
-        <form>
+        <form className={cl.registration}>
             <h2> Регистрация </h2>
             <input
                 placeholder="Email..."

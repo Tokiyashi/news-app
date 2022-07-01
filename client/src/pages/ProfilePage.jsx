@@ -8,6 +8,7 @@ import Header from "../Components/Header/Header";
 import {useParams} from "react-router-dom";
 import {fetchUser} from "../http/userAPI";
 import {useEffect} from "react";
+import {fetchUserPosts} from "../http/postAPI";
 
 const ProfilePage = () => {
 
@@ -18,6 +19,8 @@ const ProfilePage = () => {
     const fetchCurrentUser = async (x) => {
         const result = await fetchUser(x);
         setUser(result.data.data);
+        const fetchedPosts = await fetchUserPosts(x)
+        //setPosts(fetchedPosts.data.data)
     }
 
     useEffect( ()=>{
@@ -37,8 +40,10 @@ const ProfilePage = () => {
     }, [filter.sort, posts]);
 
     const sortedAndSearchedPosts = useMemo(()=>{
-        return sortedPosts.filter(post => post.header.toLowerCase().includes(filter.query.toLowerCase()))
+        return sortedPosts.filter(post => post.topic.toLowerCase().includes(filter.query.toLowerCase()))
     }, [filter.query, sortedPosts])
+
+
 
     return (
         <main>
@@ -47,7 +52,7 @@ const ProfilePage = () => {
             <div className="profilePage">
                 <UserProfile user={user} />
                 <PostFilter filter={filter} setFilter={setFilter} />
-                <PostList posts={sortedAndSearchedPosts}/>
+                <PostList posts={posts}/>
             </div>
                 : <div> Пользователь не найден... </div>
             }
