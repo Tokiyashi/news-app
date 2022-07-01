@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './RegistrationForm.module.css'
+import cl from './RegistrationForm.module.css'
 import {registration} from "../../http/userAPI";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -17,15 +17,26 @@ const RegistrationForm = () => {
         age: '',
     })
 
+    const [serverMessage, setServerMessage] = useState('');
+
         const signIn = async (userInput) => {
             console.log(userInput);
             const response = await registration(userInput.email, userInput.login, userInput.password, userInput.surname, userInput.name, userInput.age)
             console.log(response);
+            setUserInput({
+                email: '',
+                login: '',
+                password: '',
+                name: '',
+                surname: '',
+                age: '',
+            });
+            setServerMessage(response.data.text);
         }
 
 
         return (
-        <form>
+        <form className={cl.registration}>
             <h2> Регистрация </h2>
             <input
                 placeholder="Email..."
@@ -62,6 +73,10 @@ const RegistrationForm = () => {
                 onChange={e => setUserInput({...userInput, age: e.target.value})}
                 placeholder="Возраст..."
             />
+            {
+                serverMessage !== '' &&
+                <h4> {serverMessage} </h4>
+            }
             <button onClick={(e)=> {
                 signIn(userInput);
                 e.preventDefault()

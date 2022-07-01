@@ -34,16 +34,18 @@ class UserController {
         res.json(err)
     }
 
+    
+
     async checkUser(req, res) {
-        const {id, password} = req.body
+        const {emailOrLogin, password} = req.body
         const isThereUser = await db.query('SELECT id, login, password FROM "user" where email = $1 OR login = $1', [emailOrLogin])
         if (isThereUser.rowCount == 0) {
             res.json({code: 1, text: 'Пользователь не найден'})
         } else {
             if (isThereUser.rows[0]['password'] == password) {
-               res.json({code: 0, text: 'Авторизация выполнена', data:  {id: isThereUser.rows[0]['id'], login: isThereUser.rows[0]['login']}})
+                res.json({code: 0, text: 'Авторизация выполнена', data:  {id: isThereUser.rows[0]['id'], login: isThereUser.rows[0]['login']}})
             } else {
-               res.json({code: 2, text: 'Неверный пароль'})
+                res.json({code: 2, text: 'Неверный пароль'})
             }
         }
     }

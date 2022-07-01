@@ -1,17 +1,31 @@
 import React from 'react';
 import {useState} from "react";
 import {fetchUsers} from "../../http/userAPI";
+import FoundUsers from "./FoundUsers";
 
 const AccountsSearch = () => {
 
     const [foundUsers, setFoundUsers] = useState([]);
 
     async function findUsers(query){
-       await fetchUsers(query).then(result => {
+        if (query){
+        try{
+            const result = await fetchUsers(query)
+            if (result.data.data)
+                setFoundUsers(result.data.data);
+            else
+                setFoundUsers([]);
+            console.log(foundUsers);
+        } catch (e) {
 
-       });
-     //   setFoundUsers(result.data.name);
+        }
+       }
+        else{
+            setFoundUsers([])
+        }
     }
+     //   setFoundUsers(result.data.name);
+
 
     return (
         <div>
@@ -19,12 +33,7 @@ const AccountsSearch = () => {
                 placeholder="Поиск аккаунтов..."
                 onChange={ e => findUsers(e.target.value)}
             />
-            {
-                foundUsers.length !== 0 &&
-                foundUsers.map((item, index) =>
-                    <div key={index} >  </div>
-                )
-            }
+            <FoundUsers users={foundUsers}/>
         </div>
     );
 };

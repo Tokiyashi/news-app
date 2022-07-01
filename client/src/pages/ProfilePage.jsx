@@ -5,12 +5,29 @@ import PostList from "../Components/PostList/PostList";
 import {useState} from "react";
 import PostFilter from "../Components/PostFilter";
 import Header from "../Components/Header/Header";
+import {useParams} from "react-router-dom";
+import {fetchUser} from "../http/userAPI";
+import {useEffect} from "react";
+import {fetchUserPosts} from "../http/postAPI";
 
 const ProfilePage = () => {
 
+    const userId = useParams()
+
+    const [user, setUser] = useState({});
+
+    const fetchCurrentUser = async (x) => {
+        const result = await fetchUser(x);
+        setUser(result.data.data);
+        const fetchedPosts = await fetchUserPosts(x)
+        //setPosts(fetchedPosts.data.data)
+    }
+
+    useEffect( ()=>{
+        fetchCurrentUser(userId.id);
+    }, [])
+
     const [posts, setPosts] = useState([
-        {name: "Мазила", header: 'Прикол', content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ!'},
-        {name: "Вася", header: 'какой-то заголовок', content: 'РЕБЯТА НОЖ ВЫПАЛ! ЧЕСТНО Я НЕ ШУЧУ!'},
     ]);
 
     const [filter, setFilter] = useState({sort: '', query: ''})
@@ -23,17 +40,22 @@ const ProfilePage = () => {
     }, [filter.sort, posts]);
 
     const sortedAndSearchedPosts = useMemo(()=>{
-        return sortedPosts.filter(post => post.header.toLowerCase().includes(filter.query.toLowerCase()))
+        return sortedPosts.filter(post => post.topic.toLowerCase().includes(filter.query.toLowerCase()))
     }, [filter.query, sortedPosts])
+
+
 
     return (
         <main>
             <Header/>
+            { user ?
             <div className="profilePage">
-                <UserProfile/>
+                <UserProfile user={user} />
                 <PostFilter filter={filter} setFilter={setFilter} />
-                <PostList posts={sortedAndSearchedPosts}/>
+                <PostList posts={posts}/>
             </div>
+                : <div> Пользователь не найден... </div>
+            }
         </main>
     );
 };
