@@ -6,6 +6,7 @@ form{
 }
 
 textarea{
+    padding: 1em;
     resize:vertical;
     width: 100%;
     max-height: 600px;

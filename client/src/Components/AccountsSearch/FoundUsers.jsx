@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import cl from './FoundUser.module.css'
+import {Link} from "react-router-dom";
 
 const FoundUsers = ({users}) => {
 
@@ -8,9 +9,8 @@ const FoundUsers = ({users}) => {
             {
                 users.length !== 0 &&
                     users.map((item, index) =>
-                        <div className={cl.foundUser} key={index} > {item.login} </div>
+                        <div  className={cl.foundUser} key={index}> <Link to={'/profile/'+ item.id}>  {item.login} </Link> </div>
                     )
-
             }
         </div>
     );
