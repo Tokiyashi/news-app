@@ -4,7 +4,7 @@ class PostController{
 
     async createPost(req, res) {
         var id = 0
-        const {userId, text} = req.body
+        const {userId, topic, text} = req.body
         const isThereUser = await db.query('select login from "user" where id = $1', [userId])
         if (isThereUser.rowCount == 1) {
             const maxId = await db.query('SELECT max(id) FROM "post"')
@@ -13,7 +13,7 @@ class PostController{
             } else {
                 id = 0
             }
-            await db.query('insert into "post" values ($1, $2, current_date, $3) ', [id, userId, text])
+            await db.query('insert into "post" values ($1, $2, current_date, $3, $4) ', [id, userId, text, topic])
             res.json({code: 0, text: 'Пост опубликован'})
         } else {
             res.json({code: 1, text: 'Пользователь не найден'})
@@ -41,7 +41,7 @@ class PostController{
 
     async getPostById(req, res) {
         const id = req.params.id
-        const isTherePost = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" where id = $1', [id])
+        const isTherePost = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" where id = $1', [id])
         if (isTherePost.rowCount == 1) {
             res.json({code: 0, text: 'Пост найден', data: isTherePost.rows[0]})
         } else {
@@ -51,7 +51,7 @@ class PostController{
 
     async getPostsByUserId(req, res) {
         const userId = req.params.userId
-        const isTherePost = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" where user_id = $1', [userId])
+        const isTherePost = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" where user_id = $1', [userId])
         if (isTherePost.rowCount == 0) {
             res.json({code: 1, text: 'У пользователя нет постов'})
         } else {
@@ -60,7 +60,7 @@ class PostController{
     }
 
     async getPosts(req, res) {
-        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post"')
+        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post"')
         if (posts.rowCount == 0) {
             res.json({code: 1, text: 'Постов нет'})
         } else {
@@ -68,7 +68,7 @@ class PostController{
         }
     }
     async getPostsOrderByDateASC(req, res) {
-        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" ORDER BY "publicationdate" asc')
+        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" ORDER BY "publicationdate" asc')
         if (posts.rowCount == 0) {
             res.json({code: 1, text: 'Постов нет'})
         } else {
@@ -76,7 +76,7 @@ class PostController{
         }
     }
     async getPostsOrderByDateDESC(req, res) {
-        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" ORDER BY "publicationdate" desc')
+        const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" ORDER BY "publicationdate" desc')
         if (posts.rowCount == 0) {
             res.json({code: 1, text: 'Постов нет'})
         } else {
@@ -93,7 +93,7 @@ class PostController{
                 res.json({code: 1, text: 'У пользователя нет подписок'})
             } else {
                 for (var i = 0; i < followings.rowCount; i++) {
-                    const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, text from "post" where user_id = $1', [followings.rows[i]['id']])
+                    const posts = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" where user_id = $1', [followings.rows[i]['id']])
                     followings.rows[i]['posts'] = posts.rows
                 }
                 res.json({code: 0, text: 'У пользователя есть подписки', data: followings.rows})
