@@ -103,6 +103,36 @@ class PostController{
         }
     }
 
+    async getTopics(req, res) {
+        const topics = await db.query('select distinct topic from post')
+        if (topics.rowCount == 0) {
+            res.json({code: 1, text: 'Тем нет'})
+        } else {
+            res.json({code: 0, text: 'Темы найдены', data: topics.rows})
+        }
+    }
+
+    async getPostsByTopic(req, res) {
+        const topic = req.params.topic
+        const isTherePost = await db.query('select id, user_id, to_char(publicationdate,\'dd-mm-yyyy\') as publicationdate, topic, text from "post" where topic = $1', [topic])
+        if (isTherePost.rowCount == 0) {
+            res.json({code: 1, text: 'Такой темы нет'})
+        } else {
+            res.json({code: 0, text: 'Пост с заданной темой найдены', data: isTherePost.rows})
+        }
+    }
+
+    async changeTopic(req, res) {
+        const {id, topic} = req.body
+        const isTherePost = await db.query('select id from "post" where id = $1', [id])
+        if (isTherePost.rowCount == 0) {
+            res.json({code: 1, text: 'Пост не найден'})
+        } else {
+            await db.query('update post set topic = $1 where id = $2', [topic, id])
+            res.json({code: 0, text: 'тема изменена'})
+        }
+    }
+
     async test(req, res) {
         res.json("123")
     }
