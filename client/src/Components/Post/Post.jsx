@@ -30,7 +30,7 @@ const Post = ({author, content, header, creationDate}) => {
             </div>
             <div className={cl.post__info}>
 
-                <h4> {creationDate} </h4>
+                <p> {creationDate} </p>
                 <div className={cl.post__info__buttons}>
 
                     <img

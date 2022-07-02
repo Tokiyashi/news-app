@@ -8,21 +8,25 @@ export const registration = async (email,login, password, surname, name, age) =>
 
 export const signIn = async (emailOrLogin, password) => {
     const data = await $host.post('api/user/signin', {emailOrLogin, password});
+    localStorage.setItem("authId", data.data.id)
     console.log(data)
     return data
 }
 
 export const fetchUsers = async (query) => {
-
     const data = await $host.get('api/users/login/'+ query);
     return data
 }
+
 export const fetchUser = async (id) => {
     const data = await $host.get('api/user/id/'+id);
     return data
-
 }
 
+
+export const checkAuth = async () => {
+    return !!(localStorage.getItem("authId"))
+}
 
 
 

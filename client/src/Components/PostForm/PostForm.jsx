@@ -10,6 +10,8 @@ const PostForm = () => {
         topic:""
     })
 
+    const isAuth = useSelector(state => state.user.isAuth)
+
     const [serverMessage, setServerMessage] = useState('')
     const userId = useSelector(state => state.user.id)
 
@@ -26,20 +28,28 @@ const PostForm = () => {
 
     return (
         <form>
-            <input
-                placeholder="Тема..."
-            />
-            <hr/>
-            <textarea
-                value={postContent.text}
-                onChange={e => setPostContent({...postContent, text: e.target.value})}
-                placeholder="Чем бы вы хотели поделиться со всеми?"
-            />
-            <h3> {serverMessage} </h3>
-            <button onClick={e=> {
-                e.preventDefault();
-                create();
-            }} > Make Post! </button>
+            { isAuth
+                ? <div>
+                    <input
+                        placeholder="Тема..."
+                    />
+                    <hr/>
+                    <textarea
+                        value={postContent.text}
+                        onChange={e => setPostContent({...postContent, text: e.target.value})}
+                        placeholder="Чем бы вы хотели поделиться со всеми?"
+                    />
+                    <h3> {serverMessage} </h3>
+                    <button onClick={e=> {
+                        e.preventDefault();
+                        create();
+                    }} > Выложить! </button>
+                </div>
+                : <div>
+                    <h3> Для начала войдите в аккаунт </h3>
+                </div>
+            }
+
         </form>
     );
 };

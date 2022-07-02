@@ -20,7 +20,8 @@ const ProfilePage = () => {
         const result = await fetchUser(x);
         setUser(result.data.data);
         const fetchedPosts = await fetchUserPosts(x)
-        //setPosts(fetchedPosts.data.data)
+        if (fetchedPosts.data.data)
+            setPosts(fetchedPosts.data.data)
     }
 
     useEffect( ()=>{
@@ -40,7 +41,7 @@ const ProfilePage = () => {
     }, [filter.sort, posts]);
 
     const sortedAndSearchedPosts = useMemo(()=>{
-        return sortedPosts.filter(post => post.topic.toLowerCase().includes(filter.query.toLowerCase()))
+        return sortedPosts.filter(post => post.text.toLowerCase().includes(filter.query.toLowerCase()))
     }, [filter.query, sortedPosts])
 
 
@@ -50,9 +51,9 @@ const ProfilePage = () => {
             <Header/>
             { user ?
             <div className="profilePage">
-                <UserProfile user={user} />
+                <UserProfile user={user} paramsID={userId.id} />
                 <PostFilter filter={filter} setFilter={setFilter} />
-                <PostList posts={posts}/>
+                <PostList posts={sortedAndSearchedPosts}/>
             </div>
                 : <div> Пользователь не найден... </div>
             }

@@ -8,16 +8,11 @@ import Modal from "../UI/Modal/Modal";
 import NavigationMenu from "../NavigationMenu/NavigationMenu";
 import {fetchUser} from "../../http/userAPI";
 
-const UserProfile = ({user}) => {
+const UserProfile = ({user, paramsID}) => {
 
     const [createPostModal, setCreatePostModal] = useState(false);
 
-
-
-    const dispatch = useDispatch()
-    const follows = useSelector(state => state.follows)
     return (
-
         <div className={cl.wrapper}>
             <NavigationMenu/>
             <div className={cl.mainBlock}>
@@ -28,10 +23,13 @@ const UserProfile = ({user}) => {
                             <p className={cl.userProfile__info__id}>{user.id}</p>
                             <p className={cl.userProfile__info__status}>{user.quote}</p>
                         </div>
-                        <button onClick={() => {
+                        {
+                            user.id == paramsID &&
+                            <button onClick={() => {
                             setCreatePostModal(true)
-                        }}> Что у вас сегодня нового?
-                        </button>
+                            }}> Что у вас сегодня нового?
+                            </button>
+                        }
                     </div>
                     <img className={cl.userProfile__avatar}
                          alt="avatar"
@@ -41,11 +39,10 @@ const UserProfile = ({user}) => {
                     <Modal active={createPostModal} setActive={setCreatePostModal}>
                         <PostForm/>
                     </Modal>
-
                 </div>
                 <div className={cl.followInfo}>
                     <div className={[cl.followInfo__follows, cl.redBox].join(' ')}>
-                        <h3>Подписки: {follows} </h3>
+                        <h3>Подписки: </h3>
                     </div>
                     <div className={[cl.followInfo__followers, cl.redBox].join(' ')}>
                         <h3>Подписчики: 13</h3>

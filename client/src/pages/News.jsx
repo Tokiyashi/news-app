@@ -9,9 +9,7 @@ const News = () => {
     const dispatch = useDispatch;
     const followedPosts = useSelector(state => state.posts.followed)
 
-
     useEffect( ()=>{
-        //fetch posts then add to state
     }, [])
 
 
@@ -25,7 +23,7 @@ const News = () => {
                 <div style={{width: '80%'}} >
                     {followedPosts.length !== 0
                         ? <div>
-                            <PostList posts={followedPosts}></PostList>
+                            <PostList posts={followedPosts}  ></PostList>
                         </div>
                         : <div > Not Found </div>
                     }

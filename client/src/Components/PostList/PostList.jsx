@@ -18,7 +18,7 @@ const PostList = ({posts}) => {
     return (
         <div className={cl.postList}>
             {posts.map((item, index) =>
-                <Post key={index} header={item.header} author={item.name} content={item.content}> </Post>)
+                <Post key={index} header={item.topic} author={item.name} creationDate={item.publicationdate} content={item.text}> </Post>)
             }
         </div>
     );
