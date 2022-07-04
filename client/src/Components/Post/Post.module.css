@@ -11,10 +11,17 @@
 
 .post__info {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .post__info__buttons {
     float: right;
+}
+
+.post__content{
+    margin-bottom: 20px;
 }
 
 .post__header {

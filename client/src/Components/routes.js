@@ -3,6 +3,7 @@ import News from "../pages/News";
 import {LIKED_ROUTE, NEWS_ROUTE, PROFILE_ROUTE, REGISTER_ROUTE, USER_ROUTE} from "../utils/consts";
 import LikedPosts from "../pages/LikedPosts";
 import Registration from "../pages/Registration";
+import UserPage from "../pages/UserPage";
 
 export const authRoutes = [
     {
@@ -26,7 +27,7 @@ export const publicRoutes = [
     },
     {
         path: USER_ROUTE,
-        Component: ProfilePage
+        Component: UserPage
     },
     {
         path: REGISTER_ROUTE,
