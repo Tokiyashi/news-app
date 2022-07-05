@@ -34,7 +34,7 @@ class UserController {
         res.json(err)
     }
 
-    
+
 
     async checkUser(req, res) {
         const {emailOrLogin, password} = req.body
@@ -87,7 +87,7 @@ class UserController {
         // загрузка файла в папку static
         const file = req.files.avatar
         const avatarName = Uuid.v4() + ".jpg"
-        const path = __dirname.slice(0, -10) + "static/" + avatarName
+        const path = __dirname.slice(0, -17) + "client/src/static/" + avatarName
         file.mv(path)
         // валидация остальных данных
         const userId = req.body.userId

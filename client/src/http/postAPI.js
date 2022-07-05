@@ -5,7 +5,9 @@ export const createPost = async (userId, text, topic) => {
 }
 
 export const fetchUserPosts = async (id) => {
-    return await $host.get('api/post/userId/' + id, {id});
+    const data = await $host.get('api/post/userId/' + id, id);
+    console.log(data)
+    return data
 }
 
 export const fetchNews = async () => {
