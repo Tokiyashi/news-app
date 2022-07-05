@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PostList from "../Components/PostList/PostList";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "../Components/Header/Header";
 import PostFilter from "../Components/PostFilter";
 import NavigationMenu from "../Components/NavigationMenu/NavigationMenu";
+import {fetchNews} from "../http/postAPI";
 
 const News = () => {
     const dispatch = useDispatch;
-    const followedPosts = useSelector(state => state.posts.followed)
-
+    const [posts, setPosts] = useState([]);
 
     useEffect( ()=>{
-        //fetch posts then add to state
+        findPosts();
     }, [])
 
+    const findPosts = async () => {
+        const result = await fetchNews();
+        console.log(result)
+        setPosts(result.data.data)
+    }
 
     return (
         <main>
@@ -23,9 +28,9 @@ const News = () => {
                     <NavigationMenu />
                 </div>
                 <div style={{width: '80%'}} >
-                    {followedPosts.length !== 0
+                    {posts.length !== 0
                         ? <div>
-                            <PostList posts={followedPosts}></PostList>
+                            <PostList posts={posts}></PostList>
                         </div>
                         : <div > Not Found </div>
                     }

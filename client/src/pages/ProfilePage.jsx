@@ -6,53 +6,52 @@ import {useState} from "react";
 import PostFilter from "../Components/PostFilter";
 import Header from "../Components/Header/Header";
 import {useParams} from "react-router-dom";
-import {fetchUser} from "../http/userAPI";
+import {checkAuth, fetchUser} from "../http/userAPI";
 import {useEffect} from "react";
 import {fetchUserPosts} from "../http/postAPI";
+import {useDispatch} from "react-redux";
+import {usePosts} from "../hooks/usePosts";
 
 const ProfilePage = () => {
 
-    const userId = useParams()
-
+    const dispatch = useDispatch();
+    const userId = useParams();
     const [user, setUser] = useState({});
+    const [posts, setPosts] = useState([]);
+    const [filter, setFilter] = useState({sort: '', query: ''})
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
-    const fetchCurrentUser = async (x) => {
+     const fetchCurrentUser = async (x) => {
         const result = await fetchUser(x);
+        if (result.data.data)
         setUser(result.data.data);
         const fetchedPosts = await fetchUserPosts(x)
-        //setPosts(fetchedPosts.data.data)
+         if (fetchedPosts.data.data)
+        setPosts(fetchedPosts.data.data)
+    }
+
+     const checkIsAuth = async () => {
+        const localData = await checkAuth();
+        if (!localData.login)
+            return
+        dispatch({type: "LOGIN", payload: localData})
     }
 
     useEffect( ()=>{
-        fetchCurrentUser(userId.id);
+       checkIsAuth()
+       fetchCurrentUser(userId.id);
     }, [])
-
-    const [posts, setPosts] = useState([
-    ]);
-
-    const [filter, setFilter] = useState({sort: '', query: ''})
-
-    const sortedPosts = useMemo(() => {
-        if (filter.sort)
-            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-        else
-            return posts;
-    }, [filter.sort, posts]);
-
-    const sortedAndSearchedPosts = useMemo(()=>{
-        return sortedPosts.filter(post => post.topic.toLowerCase().includes(filter.query.toLowerCase()))
-    }, [filter.query, sortedPosts])
 
 
 
     return (
         <main>
             <Header/>
-            { user ?
+            { user.login ?
             <div className="profilePage">
                 <UserProfile user={user} />
                 <PostFilter filter={filter} setFilter={setFilter} />
-                <PostList posts={posts}/>
+                <PostList posts={sortedAndSearchedPosts}/>
             </div>
                 : <div> Пользователь не найден... </div>
             }
