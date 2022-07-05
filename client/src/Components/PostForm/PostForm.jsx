@@ -28,7 +28,6 @@ const PostForm = () => {
 
     return (
         <form>
-
             { isAuth
                 ? <div>
                     <input

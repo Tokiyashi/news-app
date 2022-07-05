@@ -49,7 +49,7 @@ const ProfilePage = () => {
             <Header/>
             { user.login ?
             <div className="profilePage">
-                <UserProfile user={user} />
+                <UserProfile user={user} paramsID={userId.id} />
                 <PostFilter filter={filter} setFilter={setFilter} />
                 <PostList posts={sortedAndSearchedPosts}/>
             </div>
