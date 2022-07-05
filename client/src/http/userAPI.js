@@ -10,6 +10,8 @@ export const signIn = async (emailOrLogin, password) => {
     const data = await $host.post('api/user/signin', {emailOrLogin, password});
     localStorage.setItem("authId", data.data.id)
     console.log(data)
+    localStorage.setItem("authId", data.data.data.id);
+    localStorage.setItem("login", data.data.data.login);
     return data
 }
 
@@ -19,13 +21,12 @@ export const fetchUsers = async (query) => {
 }
 
 export const fetchUser = async (id) => {
-    const data = await $host.get('api/user/id/'+id);
+    const data = await $host.get('api/user/id/' + id);
     return data
 }
 
-
 export const checkAuth = async () => {
-    return !!(localStorage.getItem("authId"))
+    return {id: localStorage.getItem("authId"),login: localStorage.getItem("login")}
 }
 
 

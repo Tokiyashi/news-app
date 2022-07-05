@@ -27,9 +27,9 @@ const UserProfile = ({user, paramsID}) => {
                             user.id == paramsID &&
                             <button onClick={() => {
                             setCreatePostModal(true)
-                            }}> Что у вас сегодня нового?
-                            </button>
-                        }
+                        }}> Что у вас сегодня нового?
+                        </button>
+
                     </div>
                     <img className={cl.userProfile__avatar}
                          alt="avatar"

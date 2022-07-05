@@ -17,7 +17,7 @@ const PostForm = () => {
 
     async function create(){
         console.log(userId, postContent.text)
-        const response = await createPost(userId, postContent.text);
+        const response = await createPost(userId, postContent.text, postContent.topic);
         console.log(response.data.text);
         setPostContent({
             text:"",
@@ -32,6 +32,8 @@ const PostForm = () => {
                 ? <div>
                     <input
                         placeholder="Тема..."
+                        value={postContent.topic}
+                        onChange={e => setPostContent({...postContent, topic: e.target.value})}
                     />
                     <hr/>
                     <textarea
@@ -49,7 +51,6 @@ const PostForm = () => {
                     <h3> Для начала войдите в аккаунт </h3>
                 </div>
             }
-
         </form>
     );
 };

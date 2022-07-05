@@ -31,6 +31,10 @@ const SignForm = () => {
         }
     }
 
+    const logout = async (userInput) => {
+        localStorage.clear();
+    }
+
     return (
         <>
         {
@@ -39,6 +43,8 @@ const SignForm = () => {
                 <h3>
                     Авторизация выполнена, {userLogin}, добро пожаловать на корявый сайт который сверстала криворукая макака!
                 </h3>
+                <button onClick={() => {
+                    logout()}}> Выйти </button>
             </form>
             : <form>
                 <h2> Вход </h2>
