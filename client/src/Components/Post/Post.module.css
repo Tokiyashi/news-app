@@ -11,6 +11,9 @@
 
 .post__info {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .post__info__buttons {

@@ -4,8 +4,10 @@ import cl from './PostList.module.css'
 import Post from "../Post/Post";
 import Select from "../UI/Select/Select";
 import post from "../Post/Post";
+import {useUserById} from "../../hooks/useUser";
 
 const PostList = ({posts}) => {
+
 
     if (posts.length === 0){
         return(
@@ -18,7 +20,8 @@ const PostList = ({posts}) => {
     return (
         <div className={cl.postList}>
             {posts.map((item, index) =>
-                <Post key={index} header={item.header} author={item.name} content={item.content}> </Post>)
+
+                <Post key={index} id={item.id} header={item.topic} author={item.user_id} creationDate={item.publicationdate} content={item.text}> </Post>)
             }
         </div>
     );
