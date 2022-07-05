@@ -14,8 +14,8 @@ const PostFilter = ({filter, setFilter}) => {
                 onChange={e => setFilter({...filter, sort: e})}
                 defaultValue="Сортировка"
                 options={[
-                    {value: "creationDate", name: "по дате"},
-                    {value: "header", name: "По заголовку"},
+                    {value: "publicationdate", name: "по дате"},
+                    {value: "topic", name: "По заголовку"},
                     {value: "likes", name: "Больше всего лайков"}
                 ]}/>
         </div>

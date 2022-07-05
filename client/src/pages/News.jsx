@@ -5,10 +5,13 @@ import Header from "../Components/Header/Header";
 import PostFilter from "../Components/PostFilter";
 import NavigationMenu from "../Components/NavigationMenu/NavigationMenu";
 import {fetchNews} from "../http/postAPI";
+import {usePosts} from "../hooks/usePosts";
 
 const News = () => {
     const dispatch = useDispatch;
     const [posts, setPosts] = useState([]);
+    const [filter, setFilter] = useState({sort: '', query: ''})
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
     useEffect( ()=>{
         findPosts();
@@ -30,7 +33,8 @@ const News = () => {
                 <div style={{width: '80%'}} >
                     {posts.length !== 0
                         ? <div>
-                            <PostList posts={posts}></PostList>
+                            <PostFilter filter={filter} setFilter={setFilter} />
+                            <PostList posts={sortedAndSearchedPosts}></PostList>
                         </div>
                         : <div > Not Found </div>
                     }
