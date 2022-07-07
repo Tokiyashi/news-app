@@ -7,8 +7,6 @@ router.delete('/like', likeController.removeLike)
 router.get('/like/count/:postId', likeController.getLikeCountOnPost)
 router.get('/like/check/:postId/:userLogin', likeController.checkLike)
 
-
 router.get('/like/test', likeController.test)
-
 
 module.exports = router

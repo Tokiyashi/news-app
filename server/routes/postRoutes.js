@@ -14,8 +14,6 @@ router.get('/post/topics', postController.getTopics)
 router.get('/post/topic/:topic', postController.getPostsByTopic)
 router.post('/post/topic/change', postController.changeTopic)
 
-
 router.get('/post/test', postController.test)
-
 
 module.exports = router

@@ -7,7 +7,6 @@ const postRouter = require('./routes/postRoutes')
 const likeRouter = require('./routes/likeRoutes')
 const commentRouter = require('./routes/commentRoutes')
 
-
 const PORT = 8080
 
 const app = express()

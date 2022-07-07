@@ -7,12 +7,7 @@ class UserController {
             code: 0,
             text: 'Успех'
         }
-        // загрузка файла в папку static
-        // const file = req.files.avatar
-        // const avatarName = Uuid.v4() + ".jpg"
-        // const path = __dirname.slice(0, -10) + "static/" + avatarName
-        // file.mv(path)
-        // валидация остальных данных
+        // валидация данных
         const {email, login, password, surname, name, age} = req.body
         const isThereUser = await db.query('SELECT count(*) FROM "user" where email = $1 OR login = $2', [email, login])
         if (isThereUser.rows[0]['count'] != "0") {
@@ -125,7 +120,6 @@ class UserController {
     async test(req, res) {
         res.json(__dirname.slice(0, -10) + 'static/')
     }
-
 }
 
 module.exports = new UserController()
